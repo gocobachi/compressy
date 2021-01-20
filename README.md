@@ -1,6 +1,6 @@
 # Compressy
 
-[![License](https://img.shields.io/packagist/l/gocobachi/compressy.svg?style=flat-square)](https://github.com/gocobachi/compressy/LICENSE)
+[![License](https://img.shields.io/packagist/l/gocobachi/compressy.svg?style=flat-square)](https://github.com/gocobachi/compressy/blob/master/LICENSE)
 [![Packagist](https://img.shields.io/packagist/v/gocobachi/compressy.svg?style=flat-square)](https://packagist.org/packages/gocobachi/compressy)
 [![Travis](https://img.shields.io/travis/gocobachi/compressy.svg?style=flat-square)](https://travis-ci.org/gocobachi/compressy)
 [![Scrutinizer](https://img.shields.io/scrutinizer/g/gocobachi/compressy.svg?style=flat-square)](https://scrutinizer-ci.com/g/gocobachi/compressy/)
