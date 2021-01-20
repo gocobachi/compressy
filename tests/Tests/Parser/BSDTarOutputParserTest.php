@@ -1,22 +1,16 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Parser;
+namespace Gocobachi\Compressy\Tests\Parser;
 
-use Alchemy\Zippy\Parser\BSDTarOutputParser;
-use Alchemy\Zippy\Tests\TestCase;
+use Gocobachi\Compressy\Parser\BSDTarOutputParser;
+use Gocobachi\Compressy\Tests\TestCase;
 
 class BSDTarOutputParserTest extends TestCase
 {
-    public function testNewParser()
+    public function testParseFileListing()
     {
-        return new BSDTarOutputParser();
-    }
+        $parser = new BSDTarOutputParser();
 
-    /**
-     * @depends testNewParser
-     */
-    public function testParseFileListing($parser)
-    {
         $current_timezone = ini_get('date.timezone');
         ini_set('date.timezone', 'UTC');
 
@@ -57,11 +51,10 @@ class BSDTarOutputParserTest extends TestCase
         ini_set('date.timezone', $current_timezone);
     }
 
-    /**
-     * @depends testNewParser
-     */
-    public function testParseVersion($parser)
+    public function testParseVersion()
     {
+        $parser = new BSDTarOutputParser();
+
         $this->assertEquals('2.8.3', $parser->parseInflatorVersion("bsdtar 2.8.3 - libarchive 2.8.3"));
     }
 }

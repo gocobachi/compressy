@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -10,9 +10,9 @@
  *
  */
 
-namespace Alchemy\Zippy\Adapter\VersionProbe;
+namespace Gocobachi\Compressy\Adapter\VersionProbe;
 
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactoryInterface;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactoryInterface;
 
 class ZipVersionProbe implements VersionProbeInterface
 {

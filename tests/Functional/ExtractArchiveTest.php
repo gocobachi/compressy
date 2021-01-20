@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
 
 use Symfony\Component\Finder\Finder;
 

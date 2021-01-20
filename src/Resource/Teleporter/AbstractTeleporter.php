@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Resource\Teleporter;
+namespace Gocobachi\Compressy\Resource\Teleporter;
 
-use Alchemy\Zippy\Exception\IOException;
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Exception\IOException;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
 
 /**
  * Class AbstractTeleporter
- * @package Alchemy\Zippy\Resource\Teleporter
+ * @package Alchemy\Compressy\Resource\Teleporter
  *
  * @deprecated Typehint against TeleporterInterface instead and use GenericTeleporter
 *  with custom reader/writers instead. This class will be removed in v0.5.x

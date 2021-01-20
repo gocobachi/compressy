@@ -1,10 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Resource\Reader\Stream;
+namespace Gocobachi\Compressy\Resource\Reader\Stream;
 
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\ResourceReader;
-use Alchemy\Zippy\Resource\ResourceReaderFactory;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\ResourceReader;
+use Gocobachi\Compressy\Resource\ResourceReaderFactory;
 
 class StreamReaderFactory implements ResourceReaderFactory
 {

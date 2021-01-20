@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter;
+namespace Gocobachi\Compressy\Tests\Adapter;
 
-use Alchemy\Zippy\Tests\TestCase;
+use Gocobachi\Compressy\Tests\TestCase;
 
 abstract class AdapterTestCase extends TestCase
 {

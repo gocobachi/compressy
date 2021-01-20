@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource\Teleporter;
+namespace Gocobachi\Compressy\Tests\Resource\Teleporter;
 
-use Alchemy\Zippy\Tests\TestCase;
+use Gocobachi\Compressy\Tests\TestCase;
 
 class TeleporterTestCase extends TestCase
 {

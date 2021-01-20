@@ -1,16 +1,16 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Resource\Resource;
-use Alchemy\Zippy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\Resource;
+use Gocobachi\Compressy\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\Resource::__construct
-     * @covers Alchemy\Zippy\Resource\Resource::getTarget
-     * @covers Alchemy\Zippy\Resource\Resource::getOriginal
+     * @covers Gocobachi\Compressy\Resource\Resource::__construct
+     * @covers Gocobachi\Compressy\Resource\Resource::getTarget
+     * @covers Gocobachi\Compressy\Resource\Resource::getOriginal
      */
     public function testGetTargetAndOriginal()
     {
@@ -24,7 +24,7 @@ class ResourceTest extends TestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\Resource::canBeProcessedInPlace
+     * @covers Gocobachi\Compressy\Resource\Resource::canBeProcessedInPlace
      * @dataProvider provideProcessInPlaceData
      */
     public function testCanBeProcessedInPlace($expected, $context, $original, $target)
@@ -32,7 +32,7 @@ class ResourceTest extends TestCase
         $resource = new Resource($original, $target);
         $result = $resource->canBeProcessedInPlace($context);
 
-        $this->assertInternalType('boolean', $result);
+        $this->assertIsBool($result);
         $this->assertEquals($expected, $result);
     }
 

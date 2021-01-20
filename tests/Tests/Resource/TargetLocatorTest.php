@@ -1,9 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\TargetLocator;
+use Gocobachi\Compressy\Exception\TargetLocatorException;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\TargetLocator;
 
 class TargetLocatorTest extends TestCase
 {
@@ -16,29 +17,26 @@ class TargetLocatorTest extends TestCase
         $this->assertEquals($expected, $locator->locate($context, $resource));
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail()
     {
+        $this->expectException(TargetLocatorException::class);
+
         $locator = new TargetLocator();
         $locator->locate("some-context", array());
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail2()
     {
+        $this->expectException(TargetLocatorException::class);
+
         $locator = new TargetLocator();
         $locator->locate("some-context", fopen('file://', 'rb'));
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail3()
     {
+        $this->expectException(TargetLocatorException::class);
+
         $locator = new TargetLocator();
         $locator->locate(__DIR__, __DIR__ . '/input/path/to/a/../local/file-non-existent.ext');
     }

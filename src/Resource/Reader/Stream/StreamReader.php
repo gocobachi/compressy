@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Resource\Reader\Stream;
+namespace Gocobachi\Compressy\Resource\Reader\Stream;
 
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\ResourceReader;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\ResourceReader;
 
 class StreamReader implements ResourceReader
 {

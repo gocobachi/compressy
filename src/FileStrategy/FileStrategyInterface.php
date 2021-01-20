@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\FileStrategy;
+namespace Gocobachi\Compressy\FileStrategy;
 
-use Alchemy\Zippy\Adapter\AdapterInterface;
+use Gocobachi\Compressy\Adapter\AdapterInterface;
 
 interface FileStrategyInterface
 {

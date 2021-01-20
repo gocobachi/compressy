@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Resource;
+namespace Gocobachi\Compressy\Resource;
 
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Resource\Reader\Guzzle\GuzzleReaderFactory;
-use Alchemy\Zippy\Resource\Reader\Guzzle\LegacyGuzzleReaderFactory;
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\Teleporter\GenericTeleporter;
-use Alchemy\Zippy\Resource\Teleporter\LocalTeleporter;
-use Alchemy\Zippy\Resource\Teleporter\StreamTeleporter;
-use Alchemy\Zippy\Resource\Teleporter\TeleporterInterface;
-use Alchemy\Zippy\Resource\Writer\FilesystemWriter;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Resource\Reader\Guzzle\GuzzleReaderFactory;
+use Gocobachi\Compressy\Resource\Reader\Guzzle\LegacyGuzzleReaderFactory;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\Teleporter\GenericTeleporter;
+use Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter;
+use Gocobachi\Compressy\Resource\Teleporter\StreamTeleporter;
+use Gocobachi\Compressy\Resource\Teleporter\TeleporterInterface;
+use Gocobachi\Compressy\Resource\Writer\FilesystemWriter;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**

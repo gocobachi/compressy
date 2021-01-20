@@ -1,14 +1,20 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
 
+use Gocobachi\Compressy\Adapter\BSDTar\TarBz2BSDTarAdapter;
+use Gocobachi\Compressy\Adapter\BSDTar\TarGzBSDTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarBz2GNUTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarGzGNUTarAdapter;
+use Gocobachi\Compressy\Archive\ArchiveInterface;
+use Gocobachi\Compressy\Exception\NotSupportedException;
 use Symfony\Component\Finder\Finder;
 
 class Add2ArchiveTest extends FunctionalTestCase
 {
     private static $file;
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
 
@@ -19,7 +25,7 @@ class Add2ArchiveTest extends FunctionalTestCase
     }
 
     /**
-     * @return \Alchemy\Zippy\Archive\ArchiveInterface
+     * @return ArchiveInterface
      */
     private function create()
     {
@@ -49,13 +55,14 @@ class Add2ArchiveTest extends FunctionalTestCase
             mkdir($target);
         }
 
-        if (in_array(get_class($this->getAdapter()), array(
-            'Alchemy\Zippy\Adapter\GNUTar\TarGzGNUTarAdapter',
-            'Alchemy\Zippy\Adapter\GNUTar\TarBz2GNUTarAdapter',
-            'Alchemy\Zippy\Adapter\BSDTar\TarGzBSDTarAdapter',
-            'Alchemy\Zippy\Adapter\BSDTar\TarBz2BSDTarAdapter',
-        ))) {
-            $this->setExpectedException('Alchemy\Zippy\Exception\NotSupportedException', 'Updating a compressed tar archive is not supported.');
+        if (in_array(get_class($this->getAdapter()), [
+            TarGzGNUTarAdapter::class,
+            TarBz2GNUTarAdapter::class,
+            TarGzBSDTarAdapter::class,
+            TarBz2BSDTarAdapter::class,
+        ])) {
+            $this->expectException(NotSupportedException::class);
+            $this->expectExceptionMessage('Updating a compressed tar archive is not supported.');
         }
 
         $archive->addMembers(array('somemorefiles/nicephoto.jpg' => __DIR__ . '/samples/morefiles/morephoto.jpg'));

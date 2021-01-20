@@ -1,41 +1,43 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\ResourceTeleporter;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\ResourceTeleporter;
 
 class ResourceTeleporterTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceTeleporter::__construct
+     * @covers Gocobachi\Compressy\Resource\ResourceTeleporter::__construct
      */
     public function testConstruct()
     {
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Resource\TeleporterContainer')
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Resource\TeleporterContainer')
             ->disableOriginalConstructor()
             ->getMock();
 
         $teleporter = new ResourceTeleporter($container);
 
+        $this->assertInstanceOf(ResourceTeleporter::class, $teleporter);
+
         return $teleporter;
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceTeleporter::teleport
+     * @covers Gocobachi\Compressy\Resource\ResourceTeleporter::teleport
      */
     public function testTeleport()
     {
         $context = 'supa-context';
-        $resource = $this->getMockBuilder('\Alchemy\Zippy\Resource\Resource')
+        $resource = $this->getMockBuilder('\Gocobachi\Compressy\Resource\Resource')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Resource\TeleporterContainer')
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Resource\TeleporterContainer')
             ->disableOriginalConstructor()
             ->getMock();
 
-        $teleporter = $this->getMockBuilder('\Alchemy\Zippy\Resource\Teleporter\TeleporterInterface')->getMock();
+        $teleporter = $this->getMockBuilder('\Gocobachi\Compressy\Resource\Teleporter\TeleporterInterface')->getMock();
         $teleporter->expects($this->once())
             ->method('teleport')
             ->with($this->equalTo($resource), $this->equalTo($context));
@@ -50,10 +52,10 @@ class ResourceTeleporterTest extends TestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceTeleporter::create
+     * @covers Gocobachi\Compressy\Resource\ResourceTeleporter::create
      */
     public function testCreate()
     {
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\ResourceTeleporter', ResourceTeleporter::create());
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\ResourceTeleporter', ResourceTeleporter::create());
     }
 }

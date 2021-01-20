@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Archive\Archive;
-use Alchemy\Zippy\Archive\Member;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Archive\Archive;
+use Gocobachi\Compressy\Archive\Member;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
 use Symfony\Component\Process\Exception\ExceptionInterface as ProcessException;
 
 abstract class AbstractTarAdapter extends AbstractBinaryAdapter

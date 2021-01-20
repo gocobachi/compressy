@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\Zippy\Resource;
+namespace Gocobachi\Compressy\Resource;
 
 interface ResourceReader 
 {

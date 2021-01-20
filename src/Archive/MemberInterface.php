@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Archive;
+namespace Gocobachi\Compressy\Archive;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Exception\RuntimeException;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Exception\RuntimeException;
 
 interface MemberInterface
 {

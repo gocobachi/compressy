@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Resource\Teleporter;
+namespace Gocobachi\Compressy\Resource\Teleporter;
 
-use Alchemy\Zippy\Resource\Reader\Guzzle\GuzzleReaderFactory;
-use Alchemy\Zippy\Resource\ResourceLocator;
-use Alchemy\Zippy\Resource\ResourceReaderFactory;
-use Alchemy\Zippy\Resource\Writer\FilesystemWriter;
+use Gocobachi\Compressy\Resource\Reader\Guzzle\GuzzleReaderFactory;
+use Gocobachi\Compressy\Resource\ResourceLocator;
+use Gocobachi\Compressy\Resource\ResourceReaderFactory;
+use Gocobachi\Compressy\Resource\Writer\FilesystemWriter;
 
 /**
  * Guzzle Teleporter implementation for HTTP resources
  *
- * @deprecated Use \Alchemy\Zippy\Resource\GenericTeleporter instead. This class will be removed in v0.5.x
+ * @deprecated Use \Alchemy\Compressy\Resource\GenericTeleporter instead. This class will be removed in v0.5.x
  */
 class GuzzleTeleporter extends GenericTeleporter
 {

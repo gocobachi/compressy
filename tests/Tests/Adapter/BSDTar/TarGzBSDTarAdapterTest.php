@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\BSDTar;
+namespace Gocobachi\Compressy\Tests\Adapter\BSDTar;
 
 class TarGzBSDTarAdapterTest extends BSDTarAdapterWithOptionsTest
 {
@@ -11,6 +11,6 @@ class TarGzBSDTarAdapterTest extends BSDTarAdapterWithOptionsTest
 
     protected static function getAdapterClassName()
     {
-        return 'Alchemy\\Zippy\\Adapter\\BSDTar\\TarGzBSDTarAdapter';
+        return 'Gocobachi\\Compressy\\Adapter\\BSDTar\\TarGzBSDTarAdapter';
     }
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource\Teleporter;
+namespace Gocobachi\Compressy\Tests\Resource\Teleporter;
 
-use Alchemy\Zippy\Resource\Teleporter\GuzzleTeleporter;
-use Alchemy\Zippy\Resource\Resource;
+use Gocobachi\Compressy\Resource\Teleporter\GuzzleTeleporter;
+use Gocobachi\Compressy\Resource\Resource;
 
 class GuzzleTeleporterTest extends TeleporterTestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\Teleporter\GuzzleTeleporter::teleport
+     * @covers Gocobachi\Compressy\Resource\Teleporter\GuzzleTeleporter::teleport
      * @dataProvider provideContexts
      */
     public function testTeleport($context)
@@ -29,10 +29,10 @@ class GuzzleTeleporterTest extends TeleporterTestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\Teleporter\GuzzleTeleporter::create
+     * @covers Gocobachi\Compressy\Resource\Teleporter\GuzzleTeleporter::create
      */
     public function testCreate()
     {
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\Teleporter\GuzzleTeleporter', GuzzleTeleporter::create());
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\Teleporter\GuzzleTeleporter', GuzzleTeleporter::create());
     }
 }

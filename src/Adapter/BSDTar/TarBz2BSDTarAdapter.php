@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Adapter\BSDTar;
+namespace Gocobachi\Compressy\Adapter\BSDTar;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Exception\NotSupportedException;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Exception\NotSupportedException;
 
 class TarBz2BSDTarAdapter extends TarBSDTarAdapter
 {

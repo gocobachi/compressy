@@ -1,14 +1,15 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\TeleporterContainer;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\TeleporterContainer;
 
 class TeleporterContainerTest extends TestCase
 {
     /**
-     * @covers \Alchemy\Zippy\Resource\TeleporterContainer::fromResource
+     * @covers \Gocobachi\Compressy\Resource\TeleporterContainer::fromResource
      * @dataProvider provideResourceData
      */
     public function testFromResource($resource, $classname)
@@ -18,11 +19,13 @@ class TeleporterContainerTest extends TestCase
         $this->assertInstanceOf($classname, $container->fromResource($resource));
     }
     /**
-     * @covers \Alchemy\Zippy\Resource\TeleporterContainer::fromResource
-     * @expectedException \Alchemy\Zippy\Exception\InvalidArgumentException
+     * @covers \Gocobachi\Compressy\Resource\TeleporterContainer::fromResource
      */
     public function testFromResourceThatFails()
     {
+
+        $this->expectException(InvalidArgumentException::class);
+
         $container = TeleporterContainer::load();
         $container->fromResource($this->createResource(array()));
     }
@@ -30,16 +33,16 @@ class TeleporterContainerTest extends TestCase
     public function provideResourceData()
     {
         return array(
-            array($this->createResource(__FILE__), 'Alchemy\Zippy\Resource\Teleporter\LocalTeleporter'),
-            array($this->createResource(fopen(__FILE__, 'rb')), 'Alchemy\Zippy\Resource\Teleporter\StreamTeleporter'),
-            array($this->createResource('ftp://192.168.1.1/images/elephant.png'), 'Alchemy\Zippy\Resource\Teleporter\StreamTeleporter'),
-            array($this->createResource('http://127.0.0.1:8080/plus-badge.png'), 'Alchemy\Zippy\Resource\Teleporter\GenericTeleporter'),
+            array($this->createResource(__FILE__), 'Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter'),
+            array($this->createResource(fopen(__FILE__, 'rb')), 'Gocobachi\Compressy\Resource\Teleporter\StreamTeleporter'),
+            array($this->createResource('ftp://192.168.1.1/images/elephant.png'), 'Gocobachi\Compressy\Resource\Teleporter\StreamTeleporter'),
+            array($this->createResource('http://127.0.0.1:8080/plus-badge.png'), 'Gocobachi\Compressy\Resource\Teleporter\GenericTeleporter'),
         );
     }
 
     private function createResource($data)
     {
-        $resource = $this->getMockBuilder('\Alchemy\Zippy\Resource\Resource')
+        $resource = $this->getMockBuilder('\Gocobachi\Compressy\Resource\Resource')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -51,16 +54,16 @@ class TeleporterContainerTest extends TestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\TeleporterContainer::load
+     * @covers Gocobachi\Compressy\Resource\TeleporterContainer::load
      */
     public function testLoad()
     {
         $container = TeleporterContainer::load();
 
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\TeleporterContainer', $container);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\TeleporterContainer', $container);
 
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\Teleporter\GenericTeleporter', $container['guzzle-teleporter']);
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\Teleporter\StreamTeleporter', $container['stream-teleporter']);
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\Teleporter\LocalTeleporter', $container['local-teleporter']);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\Teleporter\GenericTeleporter', $container['guzzle-teleporter']);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\Teleporter\StreamTeleporter', $container['stream-teleporter']);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter', $container['local-teleporter']);
     }
 }

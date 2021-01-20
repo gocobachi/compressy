@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Resource\Reader\Guzzle;
+namespace Gocobachi\Compressy\Resource\Reader\Guzzle;
 
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\ResourceReader;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\ResourceReader;
 use GuzzleHttp\ClientInterface;
 
 class GuzzleReader implements ResourceReader
@@ -14,7 +14,7 @@ class GuzzleReader implements ResourceReader
     private $client;
 
     /**
-     * @var \Alchemy\Zippy\Resource\Resource
+     * @var \Gocobachi\Compressy\Resource\Resource
      */
     private $resource;
 

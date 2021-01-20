@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Resource;
+namespace Gocobachi\Compressy\Resource;
 
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
 
 interface ResourceReaderFactory
 {

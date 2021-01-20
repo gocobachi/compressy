@@ -1,9 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter;
+namespace Gocobachi\Compressy\Tests\Adapter;
 
-use Alchemy\Zippy\Adapter\ZipAdapter;
-use Alchemy\Zippy\Parser\ParserFactory;
+use Gocobachi\Compressy\Adapter\ZipAdapter;
+use Gocobachi\Compressy\Exception\NotSupportedException;
+use Gocobachi\Compressy\Parser\ParserFactory;
 
 class ZipAdapterTest extends AdapterTestCase
 {
@@ -14,7 +15,7 @@ class ZipAdapterTest extends AdapterTestCase
      */
     protected $adapter;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$zipFile = sprintf('%s/%s.zip', self::getResourcesPath(), ZipAdapter::getName());
 
@@ -23,21 +24,21 @@ class ZipAdapterTest extends AdapterTestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (file_exists(self::$zipFile)) {
             unlink(self::$zipFile);
         }
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->adapter = $this->provideSupportedAdapter();
     }
 
     protected function provideNotSupportedAdapter()
     {
-        $inflator = $deflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactory')
+        $inflator = $deflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactory')
                                     ->disableOriginalConstructor()
                                     ->setMethods(array('useBinary'))
                                     ->getMock();
@@ -52,7 +53,7 @@ class ZipAdapterTest extends AdapterTestCase
 
     protected function provideSupportedAdapter()
     {
-        $inflator = $deflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactory')
+        $inflator = $deflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactory')
                                     ->disableOriginalConstructor()
                                     ->setMethods(array('useBinary'))
                                     ->getMock();
@@ -65,12 +66,11 @@ class ZipAdapterTest extends AdapterTestCase
         return $adapter;
     }
 
-    /**
-     * @expectedException \Alchemy\Zippy\Exception\NotSupportedException
-     */
     public function testCreateNoFiles()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $this->expectException(NotSupportedException::class);
+
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -81,7 +81,7 @@ class ZipAdapterTest extends AdapterTestCase
 
     public function testCreate()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -115,7 +115,7 @@ class ZipAdapterTest extends AdapterTestCase
 
         $manager = $this->getResourceManagerMock(__DIR__, array('lalala'));
         $outputParser = ParserFactory::create(ZipAdapter::getName());
-        $deflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactory')
+        $deflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactory')
                                     ->disableOriginalConstructor()
                                     ->setMethods(array('useBinary'))
                                     ->getMock();
@@ -134,7 +134,7 @@ class ZipAdapterTest extends AdapterTestCase
     public function testOpen($zipFile)
     {
         $archive = $this->adapter->open($this->getResource($zipFile));
-        $this->assertInstanceOf('Alchemy\Zippy\Archive\ArchiveInterface', $archive);
+        $this->assertInstanceOf('Gocobachi\Compressy\Archive\ArchiveInterface', $archive);
     }
 
     public function testListMembers()
@@ -142,7 +142,7 @@ class ZipAdapterTest extends AdapterTestCase
         $resource = $this->getResource(self::$zipFile);
         $archive = $this->adapter->open($resource);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -172,7 +172,7 @@ class ZipAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$zipFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -206,7 +206,7 @@ class ZipAdapterTest extends AdapterTestCase
 
     public function testgetInflatorVersion()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -221,7 +221,7 @@ class ZipAdapterTest extends AdapterTestCase
             ->method('getProcess')
             ->will($this->returnValue($this->getSuccessFullMockProcess()));
 
-        $this->adapter->setParser($this->getMockBuilder('\Alchemy\Zippy\Parser\ParserInterface')->getMock());
+        $this->adapter->setParser($this->getMockBuilder('\Gocobachi\Compressy\Parser\ParserInterface')->getMock());
         $this->adapter->setInflator($this->getMockedProcessBuilderFactory($mockedProcessBuilder));
 
         $this->adapter->getInflatorVersion();
@@ -229,7 +229,7 @@ class ZipAdapterTest extends AdapterTestCase
 
     public function testgetDeflatorVersion()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -244,7 +244,7 @@ class ZipAdapterTest extends AdapterTestCase
             ->method('getProcess')
             ->will($this->returnValue($this->getSuccessFullMockProcess()));
 
-        $this->adapter->setParser($this->getMockBuilder('\Alchemy\Zippy\Parser\ParserInterface')->getMock());
+        $this->adapter->setParser($this->getMockBuilder('\Gocobachi\Compressy\Parser\ParserInterface')->getMock());
         $this->adapter->setDeflator($this->getMockedProcessBuilderFactory($mockedProcessBuilder));
 
         $this->adapter->getDeflatorVersion();
@@ -254,7 +254,7 @@ class ZipAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$zipFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -287,7 +287,7 @@ class ZipAdapterTest extends AdapterTestCase
             ->method('getProcess')
             ->will($this->returnValue($this->getSuccessFullMockProcess()));
 
-        $archiveFileMock = $this->getMockBuilder('\Alchemy\Zippy\Archive\MemberInterface')->getMock();
+        $archiveFileMock = $this->getMockBuilder('\Gocobachi\Compressy\Archive\MemberInterface')->getMock();
 
         $archiveFileMock
             ->expects($this->any())
@@ -306,7 +306,7 @@ class ZipAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$zipFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -338,7 +338,7 @@ class ZipAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$zipFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 

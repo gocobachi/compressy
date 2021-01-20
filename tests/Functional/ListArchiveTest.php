@@ -1,6 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
+
+use Gocobachi\Compressy\Archive\MemberInterface;
 
 class ListArchiveTest extends FunctionalTestCase
 {
@@ -28,7 +30,7 @@ class ListArchiveTest extends FunctionalTestCase
         );
 
         foreach ($archive as $member) {
-            $this->assertInstanceOf('Alchemy\Zippy\Archive\MemberInterface', $member);
+            $this->assertInstanceOf(MemberInterface::class, $member);
             $this->assertContains($member->getLocation(), $files2find);
             unset($files2find[array_search($member->getLocation(), $files2find)]);
         }

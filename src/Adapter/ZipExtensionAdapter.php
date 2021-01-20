@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Adapter\Resource\ZipArchiveResource;
-use Alchemy\Zippy\Adapter\VersionProbe\ZipExtensionVersionProbe;
-use Alchemy\Zippy\Archive\Archive;
-use Alchemy\Zippy\Archive\Member;
-use Alchemy\Zippy\Exception\NotSupportedException;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\ResourceManager;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Adapter\Resource\ZipArchiveResource;
+use Gocobachi\Compressy\Adapter\VersionProbe\ZipExtensionVersionProbe;
+use Gocobachi\Compressy\Archive\Archive;
+use Gocobachi\Compressy\Archive\Member;
+use Gocobachi\Compressy\Exception\NotSupportedException;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\ResourceManager;
 
 /**
  * ZipExtensionAdapter allows you to create and extract files from archives
@@ -30,7 +30,7 @@ use Alchemy\Zippy\Resource\ResourceManager;
  */
 class ZipExtensionAdapter extends AbstractAdapter
 {
-    private $errorCodesMapping = array(
+    private $errorCodesMapping = [
         \ZipArchive::ER_EXISTS => "File already exists",
         \ZipArchive::ER_INCONS => "Zip archive inconsistent",
         \ZipArchive::ER_INVAL  => "Invalid argument",
@@ -39,8 +39,8 @@ class ZipExtensionAdapter extends AbstractAdapter
         \ZipArchive::ER_NOZIP  => "Not a zip archive",
         \ZipArchive::ER_OPEN   => "Can't open file",
         \ZipArchive::ER_READ   => "Read error",
-        \ZipArchive::ER_SEEK   => "Seek error"
-    );
+        \ZipArchive::ER_SEEK   => "Seek error",
+    ];
 
     public function __construct(ResourceManager $manager)
     {
@@ -228,11 +228,22 @@ class ZipExtensionAdapter extends AbstractAdapter
 
     private function getResource($path, $mode)
     {
-        $zip = new \ZipArchive();
-        $res = $zip->open($path, $mode);
 
-        if ($res !== true) {
-            throw new RuntimeException($this->errorCodesMapping[$res]);
+        $res = \ZipArchive::ER_OPEN;
+        $zip = new \ZipArchive();
+
+        try {
+            $res = $zip->open($path, $mode);
+        } catch (\Exception $e) {
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
+        } finally {
+            if ($res !== true) {
+                if (!isset($this->errorCodesMapping[$res])) {
+                    throw new RuntimeException('Unknown error when opening the zip file');
+                }
+
+                throw new RuntimeException($this->errorCodesMapping[$res]);
+            }
         }
 
         return new ZipArchiveResource($zip);
@@ -300,12 +311,11 @@ class ZipExtensionAdapter extends AbstractAdapter
     }
 
     /**
-     * Is public for PHP 5.3 compatibility, should be private
      *
      * @param \ZipArchive $zip
      * @param string      $file
      */
-    public function checkReadability(\ZipArchive $zip, $file)
+    private function checkReadability(\ZipArchive $zip, $file)
     {
         if (!is_readable($file)) {
             $zip->unchangeAll();
@@ -316,12 +326,11 @@ class ZipExtensionAdapter extends AbstractAdapter
     }
 
     /**
-     * Is public for PHP 5.3 compatibility, should be private
      *
      * @param \ZipArchive $zip
      * @param string      $file
      */
-    public function addFileToZip(\ZipArchive $zip, $file)
+    private function addFileToZip(\ZipArchive $zip, $file)
     {
         if (!$zip->addFile($file)) {
             $zip->unchangeAll();
@@ -332,12 +341,11 @@ class ZipExtensionAdapter extends AbstractAdapter
     }
 
     /**
-     * Is public for PHP 5.3 compatibility, should be private
      *
      * @param \ZipArchive $zip
      * @param string      $dir
      */
-    public function addEmptyDir(\ZipArchive $zip, $dir)
+    private function addEmptyDir(\ZipArchive $zip, $dir)
     {
         if (!$zip->addEmptyDir($dir)) {
             $zip->unchangeAll();

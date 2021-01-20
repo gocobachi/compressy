@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Resource\Writer;
+namespace Gocobachi\Compressy\Resource\Writer;
 
-use Alchemy\Zippy\Resource\ResourceReader;
-use Alchemy\Zippy\Resource\ResourceWriter;
+use Gocobachi\Compressy\Resource\ResourceReader;
+use Gocobachi\Compressy\Resource\ResourceWriter;
 
 class FilesystemWriter implements ResourceWriter
 {

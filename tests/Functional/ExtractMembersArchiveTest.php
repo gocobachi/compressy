@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
 
-use Alchemy\Zippy\Archive\ArchiveInterface;
+use Gocobachi\Compressy\Archive\ArchiveInterface;
 
 class ExtractMembersArchiveTest extends FunctionalTestCase
 {

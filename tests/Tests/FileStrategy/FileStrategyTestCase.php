@@ -1,11 +1,11 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\FileStrategy;
+namespace Gocobachi\Compressy\Tests\FileStrategy;
 
-use Alchemy\Zippy\Adapter\AdapterInterface;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\FileStrategy\FileStrategyInterface;
+use Gocobachi\Compressy\Adapter\AdapterInterface;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\FileStrategy\FileStrategyInterface;
 
 abstract class FileStrategyTestCase extends TestCase
 {
@@ -13,13 +13,13 @@ abstract class FileStrategyTestCase extends TestCase
     public function getFileExtensionShouldReturnAnString()
     {
         $that = $this;
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterContainer')->getMock();
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterContainer')->getMock();
         $container
                 ->expects($this->any())
                 ->method('offsetGet')
                 ->will($this->returnCallback(function ($offset) use ($that) {
-                    if (array_key_exists('Alchemy\Zippy\Adapter\AdapterInterface', class_implements($offset))) {
-                        return $that->getMock('Alchemy\Zippy\Adapter\AdapterInterface');
+                    if (array_key_exists('Gocobachi\Compressy\Adapter\AdapterInterface', class_implements($offset))) {
+                        return $that->getMock('Gocobachi\Compressy\Adapter\AdapterInterface');
                     }
 
                     return null;
@@ -28,20 +28,20 @@ abstract class FileStrategyTestCase extends TestCase
         $extension = $this->getStrategy($container)->getFileExtension();
 
         $this->assertNotEquals('', trim($extension));
-        $this->assertInternalType('string', $extension);
+        $this->assertIsString($extension);
     }
 
     /** @test */
     public function getAdaptersShouldReturnAnArrayOfAdapter()
     {
         $that = $this;
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterContainer')->getMock();
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterContainer')->getMock();
         $container
                 ->expects($this->any())
                 ->method('offsetGet')
                 ->will($this->returnCallback(function ($offset) use ($that) {
-                    if (array_key_exists('Alchemy\Zippy\Adapter\AdapterInterface', class_implements($offset))) {
-                        return $that->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+                    if (array_key_exists('Gocobachi\Compressy\Adapter\AdapterInterface', class_implements($offset))) {
+                        return $that->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
                     }
 
                     return null;
@@ -49,17 +49,17 @@ abstract class FileStrategyTestCase extends TestCase
 
         $adapters = $this->getStrategy($container)->getAdapters();
 
-        $this->assertInternalType('array', $adapters);
+        $this->assertIsArray($adapters);
 
         foreach ($adapters as $adapter) {
-            $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\AdapterInterface', $adapter);
+            $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\AdapterInterface', $adapter);
         }
     }
 
     /** @test */
     public function getAdaptersShouldReturnAnArrayOfAdapterEvenIfAdapterRaiseAnException()
     {
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterContainer')->getMock();
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterContainer')->getMock();
         $container
             ->expects($this->any())
             ->method('offsetGet')
@@ -67,10 +67,10 @@ abstract class FileStrategyTestCase extends TestCase
 
         $adapters = $this->getStrategy($container)->getAdapters();
 
-        $this->assertInternalType('array', $adapters);
+        $this->assertIsArray($adapters);
 
         foreach ($adapters as $adapter) {
-            $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\AdapterInterface', $adapter);
+            $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\AdapterInterface', $adapter);
         }
     }
 

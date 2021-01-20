@@ -1,13 +1,13 @@
 <?php
 
-namespace Alchemy\Zippy\Tests;
+namespace Gocobachi\Compressy\Tests;
 
-use Alchemy\Zippy\Zippy;
-use Alchemy\Zippy\Exception\NoAdapterOnPlatformException;
-use Alchemy\Zippy\Exception\FormatNotSupportedException;
-use Alchemy\Zippy\Exception\RuntimeException;
+use Gocobachi\Compressy\Compressy;
+use Gocobachi\Compressy\Exception\NoAdapterOnPlatformException;
+use Gocobachi\Compressy\Exception\FormatNotSupportedException;
+use Gocobachi\Compressy\Exception\RuntimeException;
 
-class ZippyTest extends TestCase
+class CompressyTest extends TestCase
 {
     /** @test */
     public function itShouldCreateAnArchive()
@@ -25,7 +25,7 @@ class ZippyTest extends TestCase
         $adapters = array($adapter);
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         $zippy->create($filename, $fileToAdd, $recursive);
@@ -47,7 +47,7 @@ class ZippyTest extends TestCase
         $adapters = array($adapter);
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         $zippy->create($filename, $fileToAdd, $recursive, 'zippo');
@@ -67,7 +67,7 @@ class ZippyTest extends TestCase
         $adapters = array($adapter);
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         try {
@@ -92,7 +92,7 @@ class ZippyTest extends TestCase
         $adapters = array($adapter);
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         $zippy->open($filename);
@@ -103,7 +103,7 @@ class ZippyTest extends TestCase
     {
         $container = $this->getContainer();
 
-        $zippy = new Zippy($container);
+        $zippy = new Compressy($container);
 
         $this->assertEquals($container, $zippy->adapters);
     }
@@ -114,7 +114,7 @@ class ZippyTest extends TestCase
         $adapters = array($this->getSupportedAdapter());
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         $this->assertEquals(array('zippo' => array($strategy)), $zippy->getStrategies());
@@ -129,7 +129,7 @@ class ZippyTest extends TestCase
         $adapters2 = array($this->getSupportedAdapter());
         $strategy2 = $this->getStrategy('zippo', $adapters2);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy1);
         $zippy->addStrategy($strategy2);
 
@@ -145,7 +145,7 @@ class ZippyTest extends TestCase
         $adapters2 = array($this->getSupportedAdapter());
         $strategy2 = $this->getStrategy('zippo', $adapters2);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy1);
         $zippy->addStrategy($strategy2);
         $zippy->addStrategy($strategy1);
@@ -159,7 +159,7 @@ class ZippyTest extends TestCase
         $adapters = array($this->getSupportedAdapter());
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
         $this->assertEquals($adapters[0], $zippy->getAdapterFor('zippo'));
@@ -171,41 +171,35 @@ class ZippyTest extends TestCase
     /** @test */
     public function itShouldThrowAnExceptionIfNoAdapterSupported()
     {
+        $this->expectException(NoAdapterOnPlatformException::class);
+
         $adapters = array($this->getNotSupportedAdapter());
         $strategy = $this->getStrategy('zippo', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
         $zippy->addStrategy($strategy);
 
-        try {
-            $zippy->getAdapterFor('zippo');
-            $this->fail('Should have raised an exception');
-        } catch (NoAdapterOnPlatformException $e) {
-
-        }
+        $zippy->getAdapterFor('zippo');
     }
 
     /** @test */
     public function itShouldThrowAnExceptionIfFormatNotSupported()
     {
+        $this->expectException(FormatNotSupportedException::class);
+
         $adapters = array($this->getSupportedAdapter());
         $strategy = $this->getStrategy('zippotte', $adapters);
 
-        $zippy = new Zippy($this->getContainer());
+        $zippy = new Compressy($this->getContainer());
+
         $zippy->addStrategy($strategy);
-
-        try {
-            $zippy->getAdapterFor('zippo');
-            $this->fail('Should have raised an exception');
-        } catch (FormatNotSupportedException $e) {
-
-        }
+        $zippy->getAdapterFor('zippo');
     }
 
     /** @test */
     public function loadShouldRegisterStrategies()
     {
-        $zippy = Zippy::load();
+        $zippy = Compressy::load();
 
         $this->assertCount(7, $zippy->getStrategies());
 
@@ -220,7 +214,7 @@ class ZippyTest extends TestCase
 
     private function getStrategy($extension, $adapters)
     {
-        $strategy = $this->getMockBuilder('\Alchemy\Zippy\FileStrategy\FileStrategyInterface')->getMock();
+        $strategy = $this->getMockBuilder('\Gocobachi\Compressy\FileStrategy\FileStrategyInterface')->getMock();
 
         $strategy->expects($this->any())
             ->method('getFileExtension')
@@ -235,7 +229,7 @@ class ZippyTest extends TestCase
 
     private function getSupportedAdapter()
     {
-        $adapter = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+        $adapter = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
         $adapter->expects($this->any())
             ->method('isSupported')
             ->will($this->returnValue(true));
@@ -245,7 +239,7 @@ class ZippyTest extends TestCase
 
     private function getNotSupportedAdapter()
     {
-        $adapter = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+        $adapter = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
         $adapter->expects($this->any())
             ->method('isSupported')
             ->will($this->returnValue(false));
@@ -255,6 +249,6 @@ class ZippyTest extends TestCase
 
     private function getContainer()
     {
-        return $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterContainer')->getMock();
+        return $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterContainer')->getMock();
     }
 }

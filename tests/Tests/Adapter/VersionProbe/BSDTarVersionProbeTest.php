@@ -1,12 +1,12 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\VersionProbe;
+namespace Gocobachi\Compressy\Tests\Adapter\VersionProbe;
 
 class BSDTarVersionProbeTest extends AbstractTarVersionProbeTest
 {
     public function getProbeClassName()
     {
-        return 'Alchemy\Zippy\Adapter\VersionProbe\BSDTarVersionProbe';
+        return 'Gocobachi\Compressy\Adapter\VersionProbe\BSDTarVersionProbe';
     }
 
     public function getCorrespondingVersionOutput()

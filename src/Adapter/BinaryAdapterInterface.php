@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Parser\ParserInterface;
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactoryInterface;
+use Gocobachi\Compressy\Parser\ParserInterface;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactoryInterface;
 
 interface BinaryAdapterInterface
 {

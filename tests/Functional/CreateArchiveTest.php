@@ -1,6 +1,6 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
 
 use Symfony\Component\Finder\Finder;
 
@@ -8,7 +8,7 @@ class CreateArchiveTest extends FunctionalTestCase
 {
     private static $file;
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
 

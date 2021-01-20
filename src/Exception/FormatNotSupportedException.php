@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Exception;
+namespace Gocobachi\Compressy\Exception;
 
 class FormatNotSupportedException extends RuntimeException
 {

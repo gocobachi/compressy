@@ -1,15 +1,17 @@
 <?php
-
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
+ * (c) Miguel Gocobachi <mgocobachi@php.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Gocobachi\Compressy\FileStrategy;
 
-namespace Alchemy\Zippy\FileStrategy;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBz2BSDTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarBz2GNUTarAdapter;
 
 class TarBz2FileStrategy extends AbstractFileStrategy
 {
@@ -18,10 +20,10 @@ class TarBz2FileStrategy extends AbstractFileStrategy
      */
     protected function getServiceNames()
     {
-        return array(
-            'Alchemy\\Zippy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter',
-            'Alchemy\\Zippy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter'
-        );
+        return [
+            TarBz2GNUTarAdapter::class,
+            TarBz2BSDTarAdapter::class,
+        ];
     }
 
     /**

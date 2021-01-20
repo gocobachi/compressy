@@ -1,21 +1,20 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\FileStrategy;
+namespace Gocobachi\Compressy\Tests\FileStrategy;
 
-use Alchemy\Zippy\Adapter\AdapterContainer;
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Exception\RuntimeException;
+use Gocobachi\Compressy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Exception\RuntimeException;
 
 class AbstractFileStrategyTest extends TestCase
 {
-    /**
-     * @expectedException   \InvalidArgumentException
-     */
     public function testGetAdaptersWithNoDefinedServices()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $container = AdapterContainer::load();
 
-        $stub = $this->getMockForAbstractClass('Alchemy\Zippy\FileStrategy\AbstractFileStrategy', array($container));
+        $stub = $this->getMockForAbstractClass('Gocobachi\Compressy\FileStrategy\AbstractFileStrategy', array($container));
         $stub->expects($this->any())
             ->method('getServiceNames')
             ->will($this->returnValue(array(
@@ -24,7 +23,8 @@ class AbstractFileStrategyTest extends TestCase
 
 
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+
+        $this->assertIsArray($adapters);
         $this->assertCount(0, $adapters);
     }
 
@@ -32,49 +32,53 @@ class AbstractFileStrategyTest extends TestCase
     {
         $container = AdapterContainer::load();
 
-        $stub = $this->getMockForAbstractClass('Alchemy\Zippy\FileStrategy\AbstractFileStrategy', array($container));
+        $stub = $this->getMockForAbstractClass('Gocobachi\Compressy\FileStrategy\AbstractFileStrategy', array($container));
         $stub->expects($this->any())
             ->method('getServiceNames')
             ->will($this->returnValue(array(
-                'Alchemy\\Zippy\\Adapter\\ZipAdapter',
-                'Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter'
+                'Gocobachi\\Compressy\\Adapter\\ZipAdapter',
+                'Gocobachi\\Compressy\\Adapter\\ZipExtensionAdapter'
             )));
 
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+
+        $this->assertIsArray($adapters);
         $this->assertCount(2, $adapters);
+
         foreach ($adapters as $adapter) {
-            $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\AdapterInterface', $adapter);
+            $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\AdapterInterface', $adapter);
         }
     }
 
     public function testGetAdaptersWithAdapterThatRaiseAnException()
     {
-        $adapterMock = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
-        $container = $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterContainer')->getMock();
+        $adapterMock = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
+        $container = $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterContainer')->getMock();
         $container
             ->expects($this->at(0))
             ->method('offsetGet')
-            ->with($this->equalTo('Alchemy\\Zippy\\Adapter\\ZipAdapter'))
+            ->with($this->equalTo('Gocobachi\\Compressy\\Adapter\\ZipAdapter'))
             ->will($this->returnValue($adapterMock));
 
         $container
             ->expects($this->at(1))
             ->method('offsetGet')
-            ->with($this->equalTo('Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter'))
+            ->with($this->equalTo('Gocobachi\\Compressy\\Adapter\\ZipExtensionAdapter'))
             ->will($this->throwException(new RuntimeException()));
 
-        $stub = $this->getMockForAbstractClass('Alchemy\Zippy\FileStrategy\AbstractFileStrategy', array($container));
+        $stub = $this->getMockForAbstractClass('Gocobachi\Compressy\FileStrategy\AbstractFileStrategy', array($container));
         $stub->expects($this->any())
             ->method('getServiceNames')
             ->will($this->returnValue(array(
-                'Alchemy\\Zippy\\Adapter\\ZipAdapter',
-                'Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter'
+                'Gocobachi\\Compressy\\Adapter\\ZipAdapter',
+                'Gocobachi\\Compressy\\Adapter\\ZipExtensionAdapter'
             )));
 
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+
+        $this->assertIsArray($adapters);
         $this->assertCount(1, $adapters);
+
         foreach ($adapters as $adapter) {
             $this->assertSame($adapterMock, $adapter);
         }

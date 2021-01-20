@@ -1,10 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Archive;
+namespace Gocobachi\Compressy\Tests\Archive;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Archive\ArchiveInterface;
-use Alchemy\Zippy\Archive\Archive;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Archive\ArchiveInterface;
+use Gocobachi\Compressy\Archive\Archive;
 
 class ArchiveTest extends TestCase
 {
@@ -84,6 +84,6 @@ class ArchiveTest extends TestCase
 
     private function getAdapterMock()
     {
-        return $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+        return $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
     }
 }

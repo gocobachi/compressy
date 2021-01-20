@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\FileStrategy;
+namespace Gocobachi\Compressy\FileStrategy;
 
-use Alchemy\Zippy\Adapter\AdapterContainer;
-use Alchemy\Zippy\Exception\RuntimeException;
+use Gocobachi\Compressy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Exception\RuntimeException;
 
 abstract class AbstractFileStrategy implements FileStrategyInterface
 {

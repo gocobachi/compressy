@@ -1,19 +1,19 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\VersionProbe;
+namespace Gocobachi\Compressy\Tests\Adapter\VersionProbe;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Adapter\VersionProbe\ZipVersionProbe;
-use Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Adapter\VersionProbe\ZipVersionProbe;
+use Gocobachi\Compressy\Adapter\VersionProbe\VersionProbeInterface;
 
 class ZipVersionProbeTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Adapter\VersionProbe\ZipVersionProbe::getStatus
+     * @covers Gocobachi\Compressy\Adapter\VersionProbe\ZipVersionProbe::getStatus
      */
     public function testGetStatusIsOk()
     {
-        $mockedProcessBuilderInflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilderInflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -52,7 +52,7 @@ zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]
   -e   encrypt                      -n   don\'t compress these suffixes
   -h2  show more help'));
 
-        $mockedProcessBuilderDeflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilderDeflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -100,11 +100,11 @@ Examples (see unzip.txt for more info):
         $this->assertEquals(VersionProbeInterface::PROBE_OK, $probe->getStatus());
     }
     /**
-     * @covers Alchemy\Zippy\Adapter\VersionProbe\ZipVersionProbe::getStatus
+     * @covers Gocobachi\Compressy\Adapter\VersionProbe\ZipVersionProbe::getStatus
      */
     public function testGetStatusIsNotOk()
     {
-        $mockedProcessBuilderInflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilderInflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -123,7 +123,7 @@ Examples (see unzip.txt for more info):
             ->method('getOutput')
             ->will($this->returnValue('bsdtar 2.8.3 - libarchive 2.8.3'));
 
-        $mockedProcessBuilderDeflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilderDeflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 

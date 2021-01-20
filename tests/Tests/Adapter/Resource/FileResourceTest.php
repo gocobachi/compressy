@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\Resource;
+namespace Gocobachi\Compressy\Tests\Adapter\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Adapter\Resource\FileResource;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Adapter\Resource\FileResource;
 
 class FileResourceTest extends TestCase
 {

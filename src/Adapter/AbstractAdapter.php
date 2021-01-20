@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -10,16 +10,16 @@
  *
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface;
-use Alchemy\Zippy\Archive\Archive;
-use Alchemy\Zippy\Archive\ArchiveInterface;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Resource\PathUtil;
-use Alchemy\Zippy\Resource\ResourceManager;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Adapter\VersionProbe\VersionProbeInterface;
+use Gocobachi\Compressy\Archive\Archive;
+use Gocobachi\Compressy\Archive\ArchiveInterface;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Resource\PathUtil;
+use Gocobachi\Compressy\Resource\ResourceManager;
 
 abstract class AbstractAdapter implements AdapterInterface
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\VersionProbe;
+namespace Gocobachi\Compressy\Tests\Adapter\VersionProbe;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Adapter\VersionProbe\BSDTarVersionProbe;
-use Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Adapter\VersionProbe\BSDTarVersionProbe;
+use Gocobachi\Compressy\Adapter\VersionProbe\VersionProbeInterface;
 
 abstract class AbstractTarVersionProbeTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Adapter\VersionProbe\BSDTarVersionProbe::getStatus
+     * @covers Gocobachi\Compressy\Adapter\VersionProbe\BSDTarVersionProbe::getStatus
      */
     public function testGetStatusIsOk()
     {
@@ -27,7 +27,7 @@ abstract class AbstractTarVersionProbeTest extends TestCase
 
     /**
      * @dataProvider provideInvalidVersions
-     * @covers Alchemy\Zippy\Adapter\VersionProbe\BSDTarVersionProbe::getStatus
+     * @covers Gocobachi\Compressy\Adapter\VersionProbe\BSDTarVersionProbe::getStatus
      */
     public function testGetStatusIsNotOk($inflatorVersion, $deflatorVersion, $inflatorCall, $deflatorCall)
     {
@@ -56,7 +56,7 @@ abstract class AbstractTarVersionProbeTest extends TestCase
 
     protected function getBuilder($version, $call = true)
     {
-        $mock = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mock = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 

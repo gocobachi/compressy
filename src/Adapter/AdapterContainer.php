@@ -1,34 +1,32 @@
 <?php
-
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
+ * (c) Miguel Gocobachi <mgocobachi@php.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Gocobachi\Compressy\Adapter;
 
-namespace Alchemy\Zippy\Adapter;
-
-use Alchemy\Zippy\Adapter\BSDTar\TarBSDTarAdapter;
-use Alchemy\Zippy\Adapter\BSDTar\TarBz2BSDTarAdapter;
-use Alchemy\Zippy\Adapter\BSDTar\TarGzBSDTarAdapter;
-use Alchemy\Zippy\Adapter\GNUTar\TarBz2GNUTarAdapter;
-use Alchemy\Zippy\Adapter\GNUTar\TarGNUTarAdapter;
-use Alchemy\Zippy\Adapter\GNUTar\TarGzGNUTarAdapter;
-use Alchemy\Zippy\Resource\RequestMapper;
-use Alchemy\Zippy\Resource\ResourceManager;
-use Alchemy\Zippy\Resource\ResourceTeleporter;
-use Alchemy\Zippy\Resource\TargetLocator;
-use Alchemy\Zippy\Resource\TeleporterContainer;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBSDTarAdapter;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBz2BSDTarAdapter;
+use Gocobachi\Compressy\Adapter\BSDTar\TarGzBSDTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarBz2GNUTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarGNUTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarGzGNUTarAdapter;
+use Gocobachi\Compressy\Resource\RequestMapper;
+use Gocobachi\Compressy\Resource\ResourceManager;
+use Gocobachi\Compressy\Resource\ResourceTeleporter;
+use Gocobachi\Compressy\Resource\TargetLocator;
+use Gocobachi\Compressy\Resource\TeleporterContainer;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\ExecutableFinder;
 
 class AdapterContainer implements \ArrayAccess
 {
-
-    private $items = array();
+    private $items = [];
 
     /**
      * Builds the adapter container
@@ -50,7 +48,7 @@ class AdapterContainer implements \ArrayAccess
             );
         };
 
-        $container['executable-finder'] = function($container) {
+        $container['executable-finder'] = function() {
             return new ExecutableFinder();
         };
 
@@ -62,7 +60,7 @@ class AdapterContainer implements \ArrayAccess
             return new TargetLocator();
         };
 
-        $container['teleporter-container'] = function($container) {
+        $container['teleporter-container'] = function() {
             return TeleporterContainer::load();
         };
 
@@ -74,7 +72,7 @@ class AdapterContainer implements \ArrayAccess
             return new Filesystem();
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\ZipAdapter'] = function($container) {
+        $container[ZipAdapter::class] = function($container) {
             return ZipAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -86,7 +84,7 @@ class AdapterContainer implements \ArrayAccess
         $container['gnu-tar.inflator'] = null;
         $container['gnu-tar.deflator'] = null;
 
-        $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarGNUTarAdapter'] = function($container) {
+        $container[TarGNUTarAdapter::class] = function($container) {
             return TarGNUTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -95,7 +93,7 @@ class AdapterContainer implements \ArrayAccess
             );
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarGzGNUTarAdapter'] = function($container) {
+        $container[TarGzGNUTarAdapter::class] = function($container) {
             return TarGzGNUTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -104,7 +102,7 @@ class AdapterContainer implements \ArrayAccess
             );
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter'] = function($container) {
+        $container[TarBz2GNUTarAdapter::class] = function($container) {
             return TarBz2GNUTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -116,7 +114,7 @@ class AdapterContainer implements \ArrayAccess
         $container['bsd-tar.inflator'] = null;
         $container['bsd-tar.deflator'] = null;
 
-        $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarBSDTarAdapter'] = function($container) {
+        $container[TarBSDTarAdapter::class] = function($container) {
             return TarBSDTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -125,7 +123,7 @@ class AdapterContainer implements \ArrayAccess
             );
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarGzBSDTarAdapter'] = function($container) {
+        $container[TarGzBSDTarAdapter::class] = function($container) {
             return TarGzBSDTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -134,7 +132,7 @@ class AdapterContainer implements \ArrayAccess
             );
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter'] = function($container) {
+        $container[TarBz2BSDTarAdapter::class] = function($container) {
             return TarBz2BSDTarAdapter::newInstance(
                 $container['executable-finder'],
                 $container['resource-manager'],
@@ -142,7 +140,7 @@ class AdapterContainer implements \ArrayAccess
                 $container['bsd-tar.deflator']);
         };
 
-        $container['Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter'] = function() {
+        $container[ZipExtensionAdapter::class] = function() {
             return ZipExtensionAdapter::newInstance();
         };
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter;
+namespace Gocobachi\Compressy\Tests\Adapter;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Adapter\AdapterContainer;
 
 class AdapterContainerTest extends TestCase
 {
@@ -12,13 +12,13 @@ class AdapterContainerTest extends TestCase
     {
         $container = AdapterContainer::load();
 
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\ZipAdapter', $container['Alchemy\\Zippy\\Adapter\\ZipAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter', $container['Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\GNUTar\\TarGNUTarAdapter', $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarGNUTarAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\GNUTar\\TarGzGNUTarAdapter', $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarGzGNUTarAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter', $container['Alchemy\\Zippy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\BSDTar\\TarGzBSDTarAdapter', $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarGzBSDTarAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\BSDTar\\TarBSDTarAdapter', $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarBSDTarAdapter']);
-        $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter', $container['Alchemy\\Zippy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\ZipAdapter', $container['Gocobachi\\Compressy\\Adapter\\ZipAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\ZipExtensionAdapter', $container['Gocobachi\\Compressy\\Adapter\\ZipExtensionAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\GNUTar\\TarGNUTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\GNUTar\\TarGNUTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\GNUTar\\TarGzGNUTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\GNUTar\\TarGzGNUTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\GNUTar\\TarBz2GNUTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\BSDTar\\TarGzBSDTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\BSDTar\\TarGzBSDTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\BSDTar\\TarBSDTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\BSDTar\\TarBSDTarAdapter']);
+        $this->assertInstanceOf('Gocobachi\\Compressy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter', $container['Gocobachi\\Compressy\\Adapter\\BSDTar\\TarBz2BSDTarAdapter']);
     }
 }

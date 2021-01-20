@@ -1,10 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Adapter\BSDTar;
+namespace Gocobachi\Compressy\Tests\Adapter\BSDTar;
 
-use Alchemy\Zippy\Adapter\BSDTar\TarBSDTarAdapter;
-use Alchemy\Zippy\Tests\Adapter\AdapterTestCase;
-use Alchemy\Zippy\Parser\ParserFactory;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBSDTarAdapter;
+use Gocobachi\Compressy\Tests\Adapter\AdapterTestCase;
+use Gocobachi\Compressy\Parser\ParserFactory;
 
 class TarBSDTarAdapterTest extends AdapterTestCase
 {
@@ -15,7 +15,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
      */
     protected $adapter;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         self::$tarFile = sprintf('%s/%s.tar', self::getResourcesPath(), TarBSDTarAdapter::getName());
 
@@ -24,21 +24,21 @@ class TarBSDTarAdapterTest extends AdapterTestCase
         }
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         if (file_exists(self::$tarFile)) {
             unlink(self::$tarFile);
         }
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->adapter = $this->provideSupportedAdapter();
     }
 
     private function provideAdapter()
     {
-        $inflator = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactory')
+        $inflator = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactory')
                 ->disableOriginalConstructor()
                 ->setMethods(array('useBinary'))
                 ->getMock();
@@ -68,7 +68,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
 
     public function testCreateNoFiles()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -118,7 +118,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $outputParser = ParserFactory::create(TarBSDTarAdapter::getName());
         $manager = $this->getResourceManagerMock(__DIR__, array('lalalalala'));
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -163,7 +163,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     public function testOpen($tarFile)
     {
         $archive = $this->adapter->open($tarFile);
-        $this->assertInstanceOf('Alchemy\Zippy\Archive\ArchiveInterface', $archive);
+        $this->assertInstanceOf('Gocobachi\Compressy\Archive\ArchiveInterface', $archive);
 
         return $archive;
     }
@@ -172,7 +172,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$tarFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -208,7 +208,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$tarFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -236,7 +236,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
 
     public function testgetVersion()
     {
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -260,7 +260,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$tarFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -292,7 +292,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$tarFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -346,7 +346,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
     {
         $resource = $this->getResource(self::$tarFile);
 
-        $mockedProcessBuilder = $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilder')
+        $mockedProcessBuilder = $this->getMockBuilder('\Gocobachi\Compressy\ProcessBuilder\ProcessBuilder')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -379,7 +379,7 @@ class TarBSDTarAdapterTest extends AdapterTestCase
             ->method('getProcess')
             ->will($this->returnValue($this->getSuccessFullMockProcess()));
 
-        $archiveFileMock = $this->getMockBuilder('\Alchemy\Zippy\Archive\MemberInterface')->getMock();
+        $archiveFileMock = $this->getMockBuilder('\Gocobachi\Compressy\Archive\MemberInterface')->getMock();
 
         $archiveFileMock
             ->expects($this->any())

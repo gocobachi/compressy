@@ -1,10 +1,10 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Archive;
+namespace Gocobachi\Compressy\Tests\Archive;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Archive\Member;
-use Alchemy\Zippy\Archive\MemberInterface;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Archive\Member;
+use Gocobachi\Compressy\Archive\MemberInterface;
 
 class MemberTest extends TestCase
 {
@@ -12,7 +12,7 @@ class MemberTest extends TestCase
     {
         $member = new Member(
             $this->getResource('archive/located/here'),
-             $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock(),
+             $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock(),
             'location',
             1233456,
             new \DateTime("2012-07-08 11:14:15"),
@@ -66,7 +66,7 @@ class MemberTest extends TestCase
 
     public function testExtract()
     {
-        $mockAdapter =  $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+        $mockAdapter =  $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
 
         $mockAdapter
             ->expects($this->any())
@@ -90,7 +90,7 @@ class MemberTest extends TestCase
 
     public function testRelativeExtract()
     {
-        $mockAdapter =  $this->getMockBuilder('\Alchemy\Zippy\Adapter\AdapterInterface')->getMock();
+        $mockAdapter =  $this->getMockBuilder('\Gocobachi\Compressy\Adapter\AdapterInterface')->getMock();
 
         $mockAdapter
             ->expects($this->any())

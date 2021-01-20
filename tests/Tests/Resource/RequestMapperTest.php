@@ -1,18 +1,18 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\RequestMapper;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\RequestMapper;
 
 class RequestMapperTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\RequestMapper::map
+     * @covers Gocobachi\Compressy\Resource\RequestMapper::map
      */
     public function testMap()
     {
-        $locator = $this->getMockBuilder('\Alchemy\Zippy\Resource\TargetLocator')
+        $locator = $this->getMockBuilder('\Gocobachi\Compressy\Resource\TargetLocator')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -28,12 +28,12 @@ class RequestMapperTest extends TestCase
             'here' => __DIR__ . '/input/path/to/local/file3.ext',
         ));
 
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\ResourceCollection', $collection);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\ResourceCollection', $collection);
         $this->assertCount(3, $collection);
 
         $firstFound = $secondFound = $thirdFound = false;
         foreach ($collection as $resource) {
-            $this->assertInstanceOf('Alchemy\Zippy\Resource\Resource', $resource);
+            $this->assertInstanceOf('Gocobachi\Compressy\Resource\Resource', $resource);
 
             if (__DIR__ . '/input/path/to/local/file.ext' === $resource->getOriginal()) {
                 $firstFound = true;
@@ -55,11 +55,11 @@ class RequestMapperTest extends TestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\RequestMapper::create
+     * @covers Gocobachi\Compressy\Resource\RequestMapper::create
      */
     public function testCreate()
     {
         $mapper = RequestMapper::create();
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\RequestMapper', $mapper);
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\RequestMapper', $mapper);
     }
 }

@@ -1,14 +1,23 @@
 <?php
 
-namespace Alchemy\Zippy\Functional;
+namespace Gocobachi\Compressy\Functional;
 
-use Alchemy\Zippy\Adapter\AdapterInterface;
-use Alchemy\Zippy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Adapter\AdapterInterface;
+use Gocobachi\Compressy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBSDTarAdapter;
+use Gocobachi\Compressy\Adapter\BSDTar\TarBz2BSDTarAdapter;
+use Gocobachi\Compressy\Adapter\BSDTar\TarGzBSDTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarBz2GNUTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarGNUTarAdapter;
+use Gocobachi\Compressy\Adapter\GNUTar\TarGzGNUTarAdapter;
+use Gocobachi\Compressy\Adapter\ZipAdapter;
+use Gocobachi\Compressy\Adapter\ZipExtensionAdapter;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 
-abstract class FunctionalTestCase extends \PHPUnit_Framework_TestCase
+abstract class FunctionalTestCase extends TestCase
 {
-    public function tearDown()
+    public function tearDown(): void
     {
         $filesystem = new Filesystem();
         $filesystem->remove(__DIR__ . '/samples/tmp');
@@ -21,11 +30,11 @@ abstract class FunctionalTestCase extends \PHPUnit_Framework_TestCase
      */
     protected function getAdapter()
     {
-        if (false === getenv('ZIPPY_ADAPTER')) {
-            throw new \RuntimeException('ZIPPY_ADAPTER environment variable is not set');
+        if (false === getenv('COMPRESSY_ADAPTER')) {
+            throw new \RuntimeException('COMPRESSY_ADAPTER environment variable is not set');
         }
 
-        $adapter = 'Alchemy\\Zippy\\Adapter\\' . getenv('ZIPPY_ADAPTER');
+        $adapter = 'Gocobachi\\Compressy\\Adapter\\' . getenv('COMPRESSY_ADAPTER');
 
         if (!class_exists($adapter)) {
             throw new \InvalidArgumentException(sprintf('class %s does not exist', $adapter));
@@ -44,20 +53,20 @@ abstract class FunctionalTestCase extends \PHPUnit_Framework_TestCase
     protected function getArchiveFileForAdapter($adapter)
     {
         switch (get_class($adapter)) {
-            case 'Alchemy\Zippy\Adapter\ZipAdapter':
-            case 'Alchemy\Zippy\Adapter\ZipExtensionAdapter':
+            case ZipAdapter::class:
+            case ZipExtensionAdapter::class:
                 return __DIR__ . '/samples/archive.zip';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarGzBSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarGzGNUTarAdapter':
+            case TarGzBSDTarAdapter::class:
+            case TarGzGNUTarAdapter::class:
                 return __DIR__ . '/samples/archive.tar.gz';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarBz2BSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarBz2GNUTarAdapter':
+            case TarBz2BSDTarAdapter::class:
+            case TarBz2GNUTarAdapter::class:
                 return __DIR__ . '/samples/archive.tar.bz2';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarBSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarGNUTarAdapter':
+            case TarBSDTarAdapter::class:
+            case TarGNUTarAdapter::class:
                 return __DIR__ . '/samples/archive.tar';
                 break;
             default:
@@ -69,20 +78,20 @@ abstract class FunctionalTestCase extends \PHPUnit_Framework_TestCase
     protected function getArchiveExtensionForAdapter($adapter)
     {
         switch (get_class($adapter)) {
-            case 'Alchemy\Zippy\Adapter\ZipAdapter':
-            case 'Alchemy\Zippy\Adapter\ZipExtensionAdapter':
+            case ZipAdapter::class:
+            case ZipExtensionAdapter::class:
                 return 'zip';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarGzBSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarGzGNUTarAdapter':
+            case TarGzBSDTarAdapter::class:
+            case TarGzGNUTarAdapter::class:
                 return 'tar.gz';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarBz2BSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarBz2GNUTarAdapter':
+            case TarBz2BSDTarAdapter::class:
+            case TarBz2GNUTarAdapter::class:
                 return 'tar.bz2';
                 break;
-            case 'Alchemy\Zippy\Adapter\BSDTar\TarBSDTarAdapter':
-            case 'Alchemy\Zippy\Adapter\GNUTar\TarGNUTarAdapter':
+            case TarBSDTarAdapter::class:
+            case TarGNUTarAdapter::class:
                 return 'tar';
                 break;
             default:

@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Resource;
+namespace Gocobachi\Compressy\Resource;
 
-use Alchemy\Zippy\Resource\Resource AS ZippyResource;
+use Gocobachi\Compressy\Resource\Resource AS ZippyResource;
 
 class ResourceLocator
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\PathUtil;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\PathUtil;
 
 class PathUtilTest extends TestCase
 {

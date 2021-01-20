@@ -1,8 +1,8 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\FileStrategy;
+namespace Gocobachi\Compressy\Tests\FileStrategy;
 
-use Alchemy\Zippy\FileStrategy\TarFileStrategy;
+use Gocobachi\Compressy\FileStrategy\TarFileStrategy;
 
 class TarFileStrategyTest extends FileStrategyTestCase
 {

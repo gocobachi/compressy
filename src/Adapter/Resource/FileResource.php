@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -10,7 +10,7 @@
  *
  */
 
-namespace Alchemy\Zippy\Adapter\Resource;
+namespace Gocobachi\Compressy\Adapter\Resource;
 
 class FileResource implements ResourceInterface
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource;
+namespace Gocobachi\Compressy\Tests\Resource;
 
-use Alchemy\Zippy\Tests\TestCase;
-use Alchemy\Zippy\Resource\ResourceCollection;
+use Gocobachi\Compressy\Tests\TestCase;
+use Gocobachi\Compressy\Resource\ResourceCollection;
 
 class ResourceCollectionTest extends TestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceCollection::__construct
+     * @covers Gocobachi\Compressy\Resource\ResourceCollection::__construct
      */
     public function testConstructWithoutElements()
     {
@@ -18,7 +18,7 @@ class ResourceCollectionTest extends TestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceCollection::__construct
+     * @covers Gocobachi\Compressy\Resource\ResourceCollection::__construct
      */
     public function testConstructWithElements()
     {
@@ -30,13 +30,13 @@ class ResourceCollectionTest extends TestCase
 
     private function createResourceMock()
     {
-        return $this->getMockBuilder('\Alchemy\Zippy\Resource\Resource')
+        return $this->getMockBuilder('\Gocobachi\Compressy\Resource\Resource')
             ->disableOriginalConstructor()
             ->getMock();
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\ResourceCollection::canBeProcessedInPlace
+     * @covers Gocobachi\Compressy\Resource\ResourceCollection::canBeProcessedInPlace
      * @dataProvider provideVariousInPlaceResources
      */
     public function testCanBeProcessedInPlace($expected, $first, $second, $third)
@@ -47,7 +47,7 @@ class ResourceCollectionTest extends TestCase
             $this->getInPlaceResource($third),
         ), false);
 
-        $this->assertInternalType('boolean', $collection->canBeProcessedInPlace());
+        $this->assertIsBool($collection->canBeProcessedInPlace());
         $this->assertEquals($expected, $collection->canBeProcessedInPlace());
     }
 
@@ -63,7 +63,7 @@ class ResourceCollectionTest extends TestCase
 
     private function getInPlaceResource($processInPlace)
     {
-        $resource = $this->getMockBuilder('\Alchemy\Zippy\Resource\Resource')
+        $resource = $this->getMockBuilder('\Gocobachi\Compressy\Resource\Resource')
             ->disableOriginalConstructor()
             ->getMock();
 

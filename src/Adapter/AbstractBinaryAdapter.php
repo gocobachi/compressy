@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -10,18 +10,18 @@
  *
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Adapter\Resource\FileResource;
-use Alchemy\Zippy\Archive\MemberInterface;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Parser\ParserFactory;
-use Alchemy\Zippy\Parser\ParserInterface;
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilder;
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactory;
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactoryInterface;
-use Alchemy\Zippy\Resource\ResourceManager;
+use Gocobachi\Compressy\Adapter\Resource\FileResource;
+use Gocobachi\Compressy\Archive\MemberInterface;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Parser\ParserFactory;
+use Gocobachi\Compressy\Parser\ParserInterface;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilder;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactory;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactoryInterface;
+use Gocobachi\Compressy\Resource\ResourceManager;
 use Symfony\Component\Process\ExecutableFinder;
 
 abstract class AbstractBinaryAdapter extends AbstractAdapter implements BinaryAdapterInterface

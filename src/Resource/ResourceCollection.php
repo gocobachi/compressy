@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Resource;
+namespace Gocobachi\Compressy\Resource;
 
-use Alchemy\Zippy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class ResourceCollection extends ArrayCollection

@@ -1,17 +1,12 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Parser;
+namespace Gocobachi\Compressy\Tests\Parser;
 
-use Alchemy\Zippy\Parser\ZipOutputParser;
-use Alchemy\Zippy\Tests\TestCase;
+use Gocobachi\Compressy\Parser\ZipOutputParser;
+use Gocobachi\Compressy\Tests\TestCase;
 
 class ZipOutputParserTest extends TestCase
 {
-    public function testNewParser()
-    {
-        return new ZipOutputParser();
-    }
-
     public function getDatasets()
     {
         $standardOutput =
@@ -73,11 +68,9 @@ class ZipOutputParserTest extends TestCase
         ini_set('date.timezone', $current_timezone);
     }
 
-    /**
-     * @depends testNewParser
-     */
-    public function testParseDeflatorVersion($parser)
+    public function testParseDeflatorVersion()
     {
+        $parser = new ZipOutputParser();
         $output = "UnZip 5.52 of 28 February 2005, by Info-ZIP.  Maintained by C. Spieler.  Send
 bug reports using http://www.info-zip.org/zip-bug.html; see README for details.
 
@@ -105,11 +98,9 @@ Examples (see unzip.txt for more info):
         $this->assertEquals('5.52', $parser->parseDeflatorVersion($output));
     }
 
-    /**
-     * @depends testNewParser
-     */
-    public function testParseInflatorVersion($parser)
+    public function testParseInflatorVersion()
     {
+        $parser = new ZipOutputParser();
         $output = "Copyright (c) 1990-2008 Info-ZIP - Type 'zip '-L'' for software license.
 Zip 3.0 (July 5th 2008). Usage:
 zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]

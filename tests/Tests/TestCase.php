@@ -1,14 +1,18 @@
 <?php
 
-namespace Alchemy\Zippy\Tests;
+namespace Gocobachi\Compressy\Tests;
 
-use Alchemy\Zippy\Adapter\AdapterInterface;
-use Alchemy\Zippy\Resource\PathUtil;
-use Alchemy\Zippy\Resource\ResourceCollection;
-use Alchemy\Zippy\Resource\Resource;
-use Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface;
+use Gocobachi\Compressy\Adapter\AdapterInterface;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactoryInterface;
+use Gocobachi\Compressy\Resource\PathUtil;
+use Gocobachi\Compressy\Resource\ResourceCollection;
+use Gocobachi\Compressy\Resource\Resource;
+use Gocobachi\Compressy\Adapter\VersionProbe\VersionProbeInterface;
+use Gocobachi\Compressy\Resource\ResourceManager;
+use Symfony\Component\Process\Process;
 
-abstract class TestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     public static function getResourcesPath()
     {
@@ -21,7 +25,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $dir;
     }
 
-    protected function getResourceManagerMock($context = '', $elements = array())
+    protected function getResourceManagerMock($context = '', $elements = [])
     {
         $elements = array_map(function ($item) {
             return new Resource($item, $item);
@@ -30,7 +34,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         $collection = new ResourceCollection($context, $elements, false);
 
         $manager = $this
-            ->getMockBuilder('\Alchemy\Zippy\Resource\ResourceManager')
+            ->getMockBuilder(ResourceManager::class)
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -43,7 +47,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     protected function getResource($data = null)
     {
-        $resource = $this->getMockBuilder('\Alchemy\Zippy\Adapter\Resource\ResourceInterface')->getMock();
+        $resource = $this->getMockBuilder(ResourceInterface::class)->getMock();
 
         if (null !== $data) {
             $resource->expects($this->any())
@@ -60,7 +64,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $this->fail('Trying to set a probe on an adapter that does not support it');
         }
 
-        $probe = $this->getMockBuilder('\Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface')->getMock();
+        $probe = $this->getMockBuilder(VersionProbeInterface::class)->getMock();
         $probe->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue(VersionProbeInterface::PROBE_OK));
@@ -74,7 +78,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $this->fail('Trying to set a probe on an adapter that does not support it');
         }
 
-        $probe = $this->getMockBuilder('\Alchemy\Zippy\Adapter\VersionProbe\VersionProbeInterface')->getMock();
+        $probe = $this->getMockBuilder(VersionProbeInterface::class)->getMock();
         $probe->expects($this->any())
             ->method('getStatus')
             ->will($this->returnValue(VersionProbeInterface::PROBE_NOTSUPPORTED));
@@ -85,7 +89,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedProcessBuilderFactory($mockedProcessBuilder, $creations = 1)
     {
         $mockedProcessBuilderFactory =
-            $this->getMockBuilder('\Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactoryInterface')->getMock();
+            $this->getMockBuilder(ProcessBuilderFactoryInterface::class)->getMock();
 
         $mockedProcessBuilderFactory
             ->expects($this->exactly($creations))
@@ -98,7 +102,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getSuccessFullMockProcess($runs = 1)
     {
         $mockProcess = $this
-            ->getMockBuilder('\Symfony\Component\Process\Process')
+            ->getMockBuilder(Process::class)
             ->disableOriginalConstructor()
             ->getMock();
 

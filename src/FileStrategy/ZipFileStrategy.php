@@ -1,15 +1,17 @@
 <?php
-
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
+ * (c) Miguel Gocobachi <mgocobachi@php.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Gocobachi\Compressy\FileStrategy;
 
-namespace Alchemy\Zippy\FileStrategy;
+use Gocobachi\Compressy\Adapter\ZipAdapter;
+use Gocobachi\Compressy\Adapter\ZipExtensionAdapter;
 
 class ZipFileStrategy extends AbstractFileStrategy
 {
@@ -18,10 +20,10 @@ class ZipFileStrategy extends AbstractFileStrategy
      */
     protected function getServiceNames()
     {
-        return array(
-            'Alchemy\\Zippy\\Adapter\\ZipAdapter',
-            'Alchemy\\Zippy\\Adapter\\ZipExtensionAdapter'
-        );
+        return [
+            ZipAdapter::class,
+            ZipExtensionAdapter::class,
+        ];
     }
 
     /**

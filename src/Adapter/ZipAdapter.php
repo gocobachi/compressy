@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
  *
@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Alchemy\Zippy\Adapter;
+namespace Gocobachi\Compressy\Adapter;
 
-use Alchemy\Zippy\Adapter\Resource\ResourceInterface;
-use Alchemy\Zippy\Adapter\VersionProbe\ZipVersionProbe;
-use Alchemy\Zippy\Archive\Archive;
-use Alchemy\Zippy\Archive\Member;
-use Alchemy\Zippy\Exception\InvalidArgumentException;
-use Alchemy\Zippy\Exception\NotSupportedException;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\Parser\ParserInterface;
-use Alchemy\Zippy\ProcessBuilder\ProcessBuilderFactoryInterface;
-use Alchemy\Zippy\Resource\Resource as ZippyResource;
-use Alchemy\Zippy\Resource\ResourceManager;
+use Gocobachi\Compressy\Adapter\Resource\ResourceInterface;
+use Gocobachi\Compressy\Adapter\VersionProbe\ZipVersionProbe;
+use Gocobachi\Compressy\Archive\Archive;
+use Gocobachi\Compressy\Archive\Member;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Exception\NotSupportedException;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\Parser\ParserInterface;
+use Gocobachi\Compressy\ProcessBuilder\ProcessBuilderFactoryInterface;
+use Gocobachi\Compressy\Resource\Resource as ZippyResource;
+use Gocobachi\Compressy\Resource\ResourceManager;
 use Symfony\Component\Process\Exception\ExceptionInterface as ProcessException;
 
 /**

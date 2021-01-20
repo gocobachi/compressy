@@ -1,33 +1,32 @@
 <?php
-
 /*
- * This file is part of Zippy.
+ * This file is part of Compressy.
  *
  * (c) Alchemy <info@alchemy.fr>
+ * (c) Miguel Gocobachi <mgocobachi@php.net>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Gocobachi\Compressy;
 
-namespace Alchemy\Zippy;
+use Gocobachi\Compressy\Adapter\AdapterContainer;
+use Gocobachi\Compressy\Adapter\AdapterInterface;
+use Gocobachi\Compressy\Archive\ArchiveInterface;
+use Gocobachi\Compressy\Exception\ExceptionInterface;
+use Gocobachi\Compressy\Exception\FormatNotSupportedException;
+use Gocobachi\Compressy\Exception\NoAdapterOnPlatformException;
+use Gocobachi\Compressy\Exception\RuntimeException;
+use Gocobachi\Compressy\FileStrategy\FileStrategyInterface;
+use Gocobachi\Compressy\FileStrategy\TarBz2FileStrategy;
+use Gocobachi\Compressy\FileStrategy\TarFileStrategy;
+use Gocobachi\Compressy\FileStrategy\TarGzFileStrategy;
+use Gocobachi\Compressy\FileStrategy\TB2FileStrategy;
+use Gocobachi\Compressy\FileStrategy\TBz2FileStrategy;
+use Gocobachi\Compressy\FileStrategy\TGzFileStrategy;
+use Gocobachi\Compressy\FileStrategy\ZipFileStrategy;
 
-use Alchemy\Zippy\Adapter\AdapterContainer;
-use Alchemy\Zippy\Adapter\AdapterInterface;
-use Alchemy\Zippy\Archive\ArchiveInterface;
-use Alchemy\Zippy\Exception\ExceptionInterface;
-use Alchemy\Zippy\Exception\FormatNotSupportedException;
-use Alchemy\Zippy\Exception\NoAdapterOnPlatformException;
-use Alchemy\Zippy\Exception\RuntimeException;
-use Alchemy\Zippy\FileStrategy\FileStrategyInterface;
-use Alchemy\Zippy\FileStrategy\TarBz2FileStrategy;
-use Alchemy\Zippy\FileStrategy\TarFileStrategy;
-use Alchemy\Zippy\FileStrategy\TarGzFileStrategy;
-use Alchemy\Zippy\FileStrategy\TB2FileStrategy;
-use Alchemy\Zippy\FileStrategy\TBz2FileStrategy;
-use Alchemy\Zippy\FileStrategy\TGzFileStrategy;
-use Alchemy\Zippy\FileStrategy\ZipFileStrategy;
-
-class Zippy
+class Compressy
 {
     /**
      * @var AdapterContainer
@@ -104,7 +103,7 @@ class Zippy
      *
      * @param FileStrategyInterface $strategy
      *
-     * @return Zippy
+     * @return Compressy
      */
     public function addStrategy(FileStrategyInterface $strategy)
     {
@@ -163,9 +162,9 @@ class Zippy
     }
 
     /**
-     * Creates Zippy and loads default strategies
+     * Creates Compressy and loads default strategies
      *
-     * @return Zippy
+     * @return Compressy
      */
     public static function load()
     {

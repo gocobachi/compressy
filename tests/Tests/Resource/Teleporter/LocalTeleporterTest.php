@@ -1,14 +1,15 @@
 <?php
 
-namespace Alchemy\Zippy\Tests\Resource\Teleporter;
+namespace Gocobachi\Compressy\Tests\Resource\Teleporter;
 
-use Alchemy\Zippy\Resource\Resource;
-use Alchemy\Zippy\Resource\Teleporter\LocalTeleporter;
+use Gocobachi\Compressy\Exception\InvalidArgumentException;
+use Gocobachi\Compressy\Resource\Resource;
+use Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter;
 
 class LocalTeleporterTest extends TeleporterTestCase
 {
     /**
-     * @covers Alchemy\Zippy\Resource\Teleporter\LocalTeleporter::teleport
+     * @covers Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter::teleport
      * @dataProvider provideContexts
      */
     public function testTeleport($context)
@@ -29,7 +30,7 @@ class LocalTeleporterTest extends TeleporterTestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\Teleporter\LocalTeleporter::teleport
+     * @covers Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter::teleport
      * @dataProvider provideContexts
      */
     public function testTeleportAStream($context)
@@ -51,10 +52,11 @@ class LocalTeleporterTest extends TeleporterTestCase
 
     /**
      * @dataProvider provideInvalidSources
-     * @expectedException \Alchemy\Zippy\Exception\InvalidArgumentException
      */
     public function testTeleportOnNonExistentFile($source)
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $teleporter = LocalTeleporter::create();
 
         $target = 'plop-badge.php';
@@ -101,10 +103,10 @@ class LocalTeleporterTest extends TeleporterTestCase
     }
 
     /**
-     * @covers Alchemy\Zippy\Resource\Teleporter\LocalTeleporter::create
+     * @covers Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter::create
      */
     public function testCreate()
     {
-        $this->assertInstanceOf('Alchemy\Zippy\Resource\Teleporter\LocalTeleporter', LocalTeleporter::create());
+        $this->assertInstanceOf('Gocobachi\Compressy\Resource\Teleporter\LocalTeleporter', LocalTeleporter::create());
     }
 }
