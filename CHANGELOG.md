@@ -3,6 +3,14 @@
 ## [Unreleased changes]
 - No changes
 
+## [1.0.0] - 2021-01-20
+- Drop PHP 5 support
+- PHP 7.3 minimum support
+- Symfony 5 support
+- PHPUnit 8 upgrade
+- Fix for the modified date
+- Project renamed
+
 ## [0.4.8] - 2017-03-03
 ### Fixed
 - #125: Fix invalid paths with relative locations, courtesy of @paulredmond
