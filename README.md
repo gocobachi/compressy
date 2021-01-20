@@ -1,10 +1,10 @@
 # Compressy
 
-[![License](https://img.shields.io/packagist/l/alchemy/Compressy.svg?style=flat-square)](https://github.com/gocobachi/compressy/LICENSE)
-[![Packagist](https://img.shields.io/packagist/v/alchemy/Compressy.svg?style=flat-square)](https://packagist.org/packages/gocobachi/compressy)
-[![Travis](https://img.shields.io/travis/alchemy-fr/Compressy.svg?style=flat-square)](https://travis-ci.org/gocobachi/compressy)
-[![Scrutinizer](https://img.shields.io/scrutinizer/g/alchemy-fr/Compressy.svg?style=flat-square)](https://scrutinizer-ci.com/g/gocobachi/compressy/)
-[![Packagist](https://img.shields.io/packagist/dt/alchemy/Compressy.svg?style=flat-square)](https://packagist.org/packages/gocobachi/compressy/stats)
+[![License](https://img.shields.io/packagist/l/gocobachi/compressy.svg?style=flat-square)](https://github.com/gocobachi/compressy/LICENSE)
+[![Packagist](https://img.shields.io/packagist/v/gocobachi/compressy.svg?style=flat-square)](https://packagist.org/packages/gocobachi/compressy)
+[![Travis](https://img.shields.io/travis/gocobachi/compressy.svg?style=flat-square)](https://travis-ci.org/gocobachi/compressy)
+[![Scrutinizer](https://img.shields.io/scrutinizer/g/gocobachi/compressy.svg?style=flat-square)](https://scrutinizer-ci.com/g/gocobachi/compressy/)
+[![Packagist](https://img.shields.io/packagist/dt/gocobachi/compressy.svg?style=flat-square)](https://packagist.org/packages/gocobachi/compressy/stats)
 
 A PHP library to read, create, and extract archives in various formats via command line utilities or PHP extensions
 
@@ -13,7 +13,7 @@ A PHP library to read, create, and extract archives in various formats via comma
 The only supported installation method is via [Composer](https://getcomposer.org). Run the following command to require Compressy in your project:
 
 ```
-composer require alchemy/Compressy
+composer require gocobachi/compressy
 ```
 
 ## Adapters
@@ -40,7 +40,7 @@ All the following code samples assume that Compressy is loaded and available as 
 ```
 <?php
 
-use Alchemy\Compressy\Compressy;
+use Gocobachi\Compressy\Compressy;
 
 // Require Composer's autoloader
 require __DIR__ . '/vendor/autoload.php';
