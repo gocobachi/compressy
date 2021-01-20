@@ -78,9 +78,14 @@ class ZipExtensionAdapterTest extends AdapterTestCase
 
         touch($file);
 
-        $this->expectException(RuntimeException::class);
+        // For PHP 8 the zlib extensions throws an exception for empty zip files
+        if (PHP_VERSION >= 8) {
+            $this->expectException(RuntimeException::class);
+        }
 
-        $this->adapter->open($file);
+        $archive = $this->adapter->open($file);
+
+        $this->assertInstanceOf(ArchiveInterface::class, $archive);
 
         unlink($file);
     }
