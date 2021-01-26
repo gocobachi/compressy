@@ -236,14 +236,14 @@ class ZipExtensionAdapter extends AbstractAdapter
             $res = $zip->open($path, $mode);
         } catch (\Exception $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
-        } finally {
-            if ($res !== true) {
-                if (!isset($this->errorCodesMapping[$res])) {
-                    throw new RuntimeException('Unknown error when opening the zip file');
-                }
+        }
 
-                throw new RuntimeException($this->errorCodesMapping[$res]);
+        if ($res !== true) {
+            if (!isset($this->errorCodesMapping[$res])) {
+                throw new RuntimeException('Unknown error when opening the zip file');
             }
+
+            throw new RuntimeException($this->errorCodesMapping[$res]);
         }
 
         return new ZipArchiveResource($zip);

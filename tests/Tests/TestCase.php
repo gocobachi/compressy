@@ -16,7 +16,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     public static function getResourcesPath()
     {
-        $dir = __DIR__ . '/../../../resources';
+        $dir = __DIR__ . '/../resources';
 
         if (!is_dir($dir)) {
             mkdir($dir);
